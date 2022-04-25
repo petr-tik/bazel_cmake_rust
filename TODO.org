@@ -29,9 +29,10 @@ call it in the internals
 
 ** DONE add a pure function to cmake lib that takes an int
 
-** TODO create a cc_test that chains calls to rust_lib and then cmake_lib
+** DONE create a cc_test that chains calls to rust_lib and then cmake_lib
 assert the outcome as expected
 
+** TODO change publicity of cmake lib
 ** TODO Add a dependency on an external cmake-buildable lib for formatting
 https://github.com/fmtlib/fmt
 
@@ -53,12 +54,8 @@ gcc-7 and g++-7 as env vars
 *** TODO define a clang-11 toolchain
 works as env vars too
 
-** TODO use mold linker in the toolchain and compare link times
+*** TODO use mold linker in the toolchain and compare link times
 
 ** TODO get clangd working for cpp
-
 ** TODO get rust-analyzer working for rust lib
-
 ** TODO add python tests to this
-
-** TODO change publicity of cmake lib

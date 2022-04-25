@@ -6,15 +6,22 @@ cc_library(
         "bar.cc",
     ],
     hdrs = ["bar.h"],
-    deps = ["//rust_lib:rust_lib"]
+    deps = ["//rust_lib:rust_lib",
+            "//cpp_lib_cmake:cmake_lib"]
 )
 
 cc_binary(
     name = "native_cmake_cc_bin",
     deps = [":pure_bazel_cpp_lib",
-            "//cpp_lib_cmake:cmake_lib"
-            ],
+            "//cpp_lib_cmake:cmake_lib"],
     srcs = ["main.cc"],
 )
 
 
+cc_test(
+  name = "test_bar",
+  size = "small",
+  srcs = ["test_bar.cc"],
+  deps = ["@com_google_googletest//:gtest_main",
+          ":pure_bazel_cpp_lib"],
+)

@@ -22,12 +22,10 @@ load("@rules_cc//cc:repositories.bzl", "rules_cc_toolchains")
 rules_cc_toolchains()
 
 http_archive(
-    name = "com_google_googletest",
-    sha256 = "ab7d3be1f3781984102d7c12d7dc27ae2695a817c439f24db8ffc593840c1b17",
-    strip_prefix = "googletest-{}".format(commit["googletest"]),
-    urls = [
-        "https://github.com/google/googletest/archive/{}.zip".format(commit["googletest"]),
-    ],
+  name = "com_google_googletest",
+  urls = ["https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip"],
+  sha256 = "5cf189eb6847b4f8fc603a3ffff3b0771c08eec7dd4bd961bfd45477dd13eb73",
+  strip_prefix = "googletest-609281088cfefc76f9d0ce82e1ff6c30cc3591e5",
 )
 
 http_archive(
