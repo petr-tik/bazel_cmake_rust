@@ -1,10 +1,10 @@
 load("@rules_foreign_cc//foreign_cc:defs.bzl", "cmake")
 load("@rules_cc//cc:defs.bzl", "cc_toolchain", "cc_toolchain_suite")
 
-filegroup(
-    name = "empty",
-    srcs = [],
-)
+# filegroup(
+#     name = "empty",
+#     srcs = [],
+# )
 
 # cc_toolchain_suite(
 #     name = "cpp",
@@ -37,4 +37,6 @@ cmake(
     lib_name = "libworking_a",
     lib_source = ":all_srcs",
     generate_args = ["-GNinja"],
+    # TODO change publicity to only provide this to native_cmake_cc_bin
+    visibility = ["//visibility:public"],
 )

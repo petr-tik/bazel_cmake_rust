@@ -12,18 +12,20 @@ the lib_name attribute in the cmake starlark function has to match the `add_libr
 
 Now that it does - we are all good.
 
-** STRT Create a cc_library
+** DONE Create a cc_library
 
 *** DONE get it to build
 
-*** TODO add a dependency on the cmake lib
-call it in the internals
+*** DONE Create a binary that calls native cc_lib and cmake lib
 
-*** TODO create cc_test that verifies the library works
+**** DONE add a dependency on the cmake lib
+call it in the internals
 
 ** DONE create a rust library with ffi that exposes a function
 
 *** DONE create a rust test executable
+
+*** TODO make the rust public ABI/API return an int
 
 ** TODO create a cc_test that chains calls to rust_lib and then cmake_lib
 assert the outcome as expected
@@ -46,3 +48,11 @@ gcc-7 and g++-7 as env vars
 https://bazel.build/tutorials/cc-toolchain-config
 
 ** TODO use mold linker in the toolchain and compare link times
+
+** TODO get clangd working for cpp
+
+** TODO get rust-analyzer working for rust lib
+
+** TODO add python tests to this
+
+** TODO change publicity of cmake lib

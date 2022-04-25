@@ -7,3 +7,11 @@ cc_library(
     ],
     hdrs = ["bar.h"],
 )
+
+cc_binary(
+    name = "native_cmake_cc_bin",
+    deps = [":pure_bazel_cpp_lib",
+            "//cpp_lib_cmake:cmake_lib"
+            ],
+    srcs = ["main.cc"],
+)
