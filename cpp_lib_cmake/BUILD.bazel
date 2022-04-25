@@ -34,13 +34,7 @@ filegroup(
 
 cmake(
     name = "cmake_lib",
-    # cache_entries = {
-    #     "CMAKE_C_COMPILER": "/usr/bin/gcc-7",
-    #     "CMAKE_CXX_COMPILER": "/usr/bin/g++-7",
-    # },
-    # copts = ["-L/usr/lib/x86_64-linux-gnu/"],
+    lib_name = "libworking_a",
     lib_source = ":all_srcs",
-    generate_args = ["-G Ninja"],
-    linkopts = ["-L/usr/lib/x86_64-linux-gnu/"],
-    out_static_libs = ["libcmake_lib.a"],
+    generate_args = ["-GNinja"],
 )
