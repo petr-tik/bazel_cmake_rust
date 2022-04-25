@@ -1,0 +1,16 @@
+load("@rules_foreign_cc//foreign_cc:defs.bzl", "cmake")
+
+filegroup(
+    name = "all_srcs",
+    srcs = glob(["**"]),
+    visibility = ["//visibility:public"],
+)
+
+cmake(
+    name = "cmake_lib",
+    # copts = ["-L/usr/lib/x86_64-linux-gnu/"],
+    lib_source = ":all_srcs",
+    generate_args = ["-G Ninja"],
+    # linkopts = ["-L/usr/lib/x86_64-linux-gnu/"],
+    out_static_libs = ["libcmake_lib.a"],
+)

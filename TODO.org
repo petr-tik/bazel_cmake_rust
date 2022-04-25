@@ -1,0 +1,12 @@
+#+TITLE: Todo
+
+* cc_library and tests that rely on cmake lib and rust lib
+
+** TODO Build a cmake lib with foreign rules
+
+** TODO Create a cc_library in bazel that depends on the cmake_lib
+call it in the internals
+
+*** TODO create cc_test that verifies the library works
+
+** TODO create a rust library with ffi that

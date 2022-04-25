@@ -1,0 +1,13 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@rules_rust//rust:defs.bzl", "rust_static_library", "rust_test")
+
+rust_static_library(
+    name = "rust_lib",
+    srcs = ["lib.rs"],
+)
+
+rust_test(
+    name = "rusty_test",
+    crate = ":rust_lib",
+)
