@@ -32,6 +32,14 @@ call it in the internals
 ** DONE create a cc_test that chains calls to rust_lib and then cmake_lib
 assert the outcome as expected
 
+** DONE add an expect throw test for a rust panic
+*** How do you view full rust backtrace when it's linked into a cc_test?
+bazel test --test_output all //... --test_env=RUST_BACKTRACE=full
+
+even better - you can set an env var for a particular test
+*** Rust panics when linked to cc_library
+gtest EXPECT_ANY_THROW doesn't catch it properly, so we need a different kind of test
+
 ** TODO change publicity of cmake lib
 ** TODO Add a dependency on an external cmake-buildable lib for formatting
 https://github.com/fmtlib/fmt
@@ -45,6 +53,8 @@ fmt::print(fg(fmt::color::crimson) | fmt::emphasis::bold, "Hello, {}!\n", "world
 
 ** TODO modify a string in rust then pass it to cc_library to fmt pretty print
 
+** TODO add cxx-rs and link it with a third-party cmake lib
+
 ** TODO define a proper toolchains instead of env vars
 https://bazel.build/tutorials/cc-toolchain-config
 
@@ -57,5 +67,6 @@ works as env vars too
 *** TODO use mold linker in the toolchain and compare link times
 
 ** TODO get clangd working for cpp
+https://github.com/hedronvision/bazel-compile-commands-extractor
 ** TODO get rust-analyzer working for rust lib
 ** TODO add python tests to this

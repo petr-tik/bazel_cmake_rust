@@ -25,3 +25,19 @@ cc_test(
   deps = ["@com_google_googletest//:gtest_main",
           ":pure_bazel_cpp_lib"],
 )
+
+cc_binary(
+    name = "test_rust_panic_overcomes_expect_any_throw",
+    deps = [":pure_bazel_cpp_lib", "@com_google_googletest//:gtest_main"],
+    srcs = ["test_panic.cc"],
+)
+
+py_test(
+    name = "py_test_rust_panic_overcomes_expect_any_throw",
+    size = "small",
+    srcs = ["test_rust_panic_overcomes_expect_any_throw.py"],
+    main = "test_rust_panic_overcomes_expect_any_throw.py",
+    data = [":test_rust_panic_overcomes_expect_any_throw"],
+    args = ["$(location :test_rust_panic_overcomes_expect_any_throw)"],
+    env = {"RUST_BACKTRACE": "full"}
+)
