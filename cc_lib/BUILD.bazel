@@ -6,6 +6,7 @@ cc_library(
         "bar.cc",
     ],
     hdrs = ["bar.h"],
+    deps = ["//rust_lib:rust_lib"]
 )
 
 cc_binary(
@@ -15,3 +16,5 @@ cc_binary(
             ],
     srcs = ["main.cc"],
 )
+
+
