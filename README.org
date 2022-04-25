@@ -1,0 +1,9 @@
+#+TITLE: Readme
+
+* Build
+
+With bazel 5.1.1 you should be able to "just build"
+
+#+begin_src bash
+CC=clang-10 CXX=clang++-10 bazel test //...
+#+end_src

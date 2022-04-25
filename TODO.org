@@ -27,13 +27,15 @@ call it in the internals
 
 *** DONE make the rust public ABI/API return an int
 
+** DONE add a pure function to cmake lib that takes an int
+
 ** TODO create a cc_test that chains calls to rust_lib and then cmake_lib
 assert the outcome as expected
 
-** TODO Add a dependency on the cmake-buildable lib for formatting
+** TODO Add a dependency on an external cmake-buildable lib for formatting
 https://github.com/fmtlib/fmt
 
-pretty-print a string
+pretty-print a string in the current cmake lib
 #+begin_src cpp
 #include <fmt/color.h>
 
@@ -42,10 +44,14 @@ fmt::print(fg(fmt::color::crimson) | fmt::emphasis::bold, "Hello, {}!\n", "world
 
 ** TODO modify a string in rust then pass it to cc_library to fmt pretty print
 
-** TODO define a proper toolchain to stop passing
+** TODO define a proper toolchains instead of env vars
+https://bazel.build/tutorials/cc-toolchain-config
+
+*** TODO define a gcc-7 toolchain
 gcc-7 and g++-7 as env vars
 
-https://bazel.build/tutorials/cc-toolchain-config
+*** TODO define a clang-11 toolchain
+works as env vars too
 
 ** TODO use mold linker in the toolchain and compare link times
 
