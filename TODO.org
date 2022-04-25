@@ -1,12 +1,40 @@
 #+TITLE: Todo
 
 * cc_library and tests that rely on cmake lib and rust lib
+Going to learn me a Bazel by wiring cmake, native cc and rules_rust-based
+libraries and build targets.
 
-** TODO Build a cmake lib with foreign rules
+In the end, i would like to be able to build cpp libraries and tests that
+use APIs from third-party cmake-built libraries and in-repo rust libraries.
 
-** TODO Create a cc_library in bazel that depends on the cmake_lib
+** STRT Get a cmake lib to build in bazel
+
+** STRT Create a cc_library
+
+*** DONE get it to build
+
+*** TODO add a dependency on the cmake lib
 call it in the internals
 
 *** TODO create cc_test that verifies the library works
 
-** TODO create a rust library with ffi that
+** DONE create a rust library with ffi that exposes a function
+
+*** DONE create a rust test executable
+
+** TODO create a cc_test that chains calls to rust_lib and then cmake_lib
+assert the outcome as expected
+
+** TODO Add a dependency on the cmake-buildable lib for formatting
+https://github.com/fmtlib/fmt
+
+pretty-print a string
+#+begin_src cpp
+#include <fmt/color.h>
+
+fmt::print(fg(fmt::color::crimson) | fmt::emphasis::bold, "Hello, {}!\n", "world");
+#+end_src
+
+** TODO modify a string in rust then pass it to cc_library to fmt pretty print
+
+** TODO use mold linker in the toolchain and compare link times

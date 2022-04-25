@@ -1,11 +1,10 @@
+workspace(name = "glueing_cmake_rust_bazel")
+
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 commit = {
-    "llvm_toolchain": "1eb0a56b27bc38489fe9257e7d2010dd64ff3cf9",
     "rules_cc": "d545fa4f798f2a0b82f556b8b0ec59a93c100df7",
     "googletest": "703bd9caab50b139428cea1aaff9974ebee5742e",
-    "benchmark": "8e0b1913d4ea803dfeb2e55567208fcab6b1b6c7",
-    "heap_layers": "18966daad7a3f2ef30e9a2ac3750b590bb688ba3",
 }
 
 http_archive(
@@ -14,6 +13,20 @@ http_archive(
     strip_prefix = "rules_cc-{}".format(commit["rules_cc"]),
     urls = [
         "https://github.com/bazelbuild/rules_cc/archive/{}.zip".format(commit["rules_cc"]),
+    ],
+)
+
+load("@rules_cc//cc:repositories.bzl", "rules_cc_toolchains")
+
+
+rules_cc_toolchains()
+
+http_archive(
+    name = "com_google_googletest",
+    sha256 = "ab7d3be1f3781984102d7c12d7dc27ae2695a817c439f24db8ffc593840c1b17",
+    strip_prefix = "googletest-{}".format(commit["googletest"]),
+    urls = [
+        "https://github.com/google/googletest/archive/{}.zip".format(commit["googletest"]),
     ],
 )
 
@@ -42,30 +55,8 @@ http_archive(
 
 load("@rules_rust//rust:repositories.bzl", "rules_rust_dependencies", "rust_register_toolchains")
 
-load("@rules_cc//cc:defs.bzl", "cc_toolchain", "cc_toolchain_suite")
 
 rules_rust_dependencies()
 
 rust_register_toolchains()
-
-# TODO move to a toolchain dir
-cc_toolchain_suite(
-    name = "cpp",
-    toolchains = {
-        "k8": ":cc-compiler-clang10",
-    },
-)
-
-cc_toolchain(
-    name = "cc-compiler-clang10",
-    all_files = ":empty",
-    compiler_files = ":empty",
-    dwp_files = ":empty",
-    linker_files = ":empty",
-    objcopy_files = ":empty",
-    strip_files = ":empty",
-    supports_param_files = 1,
-    toolchain_config = ":clang10_toolchain",
-    toolchain_identifier = "clang10_toolchain",
-)
 
