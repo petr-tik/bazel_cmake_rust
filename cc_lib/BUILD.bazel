@@ -1,5 +1,3 @@
-package(default_visibility = ["//visibility:public"])
-
 cc_library(
     name = "pure_bazel_cpp_lib",
     srcs = [

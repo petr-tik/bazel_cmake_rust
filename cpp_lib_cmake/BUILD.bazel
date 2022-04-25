@@ -29,7 +29,6 @@ load("@rules_cc//cc:defs.bzl", "cc_toolchain", "cc_toolchain_suite")
 filegroup(
     name = "all_srcs",
     srcs = glob(["**"]),
-    visibility = ["//visibility:public"],
 )
 
 cmake(
@@ -37,6 +36,5 @@ cmake(
     lib_name = "libworking_a",
     lib_source = ":all_srcs",
     generate_args = ["-GNinja"],
-    # TODO change publicity to only provide this to native_cmake_cc_bin
-    visibility = ["//visibility:public"],
+    visibility = ["//cc_lib:__pkg__"],
 )

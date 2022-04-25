@@ -40,7 +40,7 @@ even better - you can set an env var for a particular test
 *** Rust panics when linked to cc_library
 gtest EXPECT_ANY_THROW doesn't catch it properly, so we need a different kind of test
 
-** TODO change publicity of cmake lib
+** DONE Restrict targets' publicity to more private by default
 ** TODO Add a dependency on an external cmake-buildable lib for formatting
 https://github.com/fmtlib/fmt
 

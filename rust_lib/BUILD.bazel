@@ -1,12 +1,9 @@
-package(default_visibility = ["//visibility:public"])
-
 load("@rules_rust//rust:defs.bzl", "rust_static_library", "rust_test")
 
 rust_static_library(
     name = "rust_lib",
     srcs = ["lib.rs"],
-    # TODO change publicity to only provide this to native_cmake_cc_bin
-    visibility = ["//visibility:public"],
+    visibility = ["//cc_lib:__pkg__"],
 )
 
 rust_test(
