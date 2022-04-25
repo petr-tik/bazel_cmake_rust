@@ -25,7 +25,7 @@ call it in the internals
 
 *** DONE create a rust test executable
 
-*** TODO make the rust public ABI/API return an int
+*** DONE make the rust public ABI/API return an int
 
 ** TODO create a cc_test that chains calls to rust_lib and then cmake_lib
 assert the outcome as expected
