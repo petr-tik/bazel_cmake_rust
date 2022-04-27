@@ -1,14 +1,14 @@
 #[no_mangle]
-pub extern "C" fn my_favorite_number() -> i32 {
-    4
-}
-
-#[no_mangle]
-pub extern "C" fn complex_maths(inp: i32) -> i32 {
+pub extern "C" fn maths_in_rust(inp: i32) -> i32 {
     let factor = 10i32;
     // TODO aargh unsafe
     // add a test case that triggers it in cpp
     return inp.checked_mul(factor).unwrap();
+}
+
+#[no_mangle]
+pub extern "C" fn string_from_rust(number_to_add: i32) -> String {
+    format!("Hello World {number_to_add}")
 }
 
 #[cfg(test)]
@@ -16,12 +16,12 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_my_favorite_number() {
-        assert_eq!(4, my_favorite_number());
+    fn test_my_maths_in_rust() {
+        assert_eq!(50, maths_in_rust(5));
     }
 
     #[test]
-    fn test_my_complex_maths() {
-        assert_eq!(50, complex_maths(5));
+    fn test_my_string() {
+        assert_eq!(string_from_rust(1), "Hello World 1");
     }
 }

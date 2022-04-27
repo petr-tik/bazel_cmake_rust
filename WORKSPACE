@@ -2,22 +2,17 @@ workspace(name = "glueing_cmake_rust_bazel")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-commit = {
-    "rules_cc": "d545fa4f798f2a0b82f556b8b0ec59a93c100df7",
-    "googletest": "703bd9caab50b139428cea1aaff9974ebee5742e",
-}
 
 http_archive(
     name = "rules_cc",
     sha256 = "188e88d911b69bb77b391e02a4a5fdec2313dd01f0305d97cd3451e38f7ace10",
-    strip_prefix = "rules_cc-{}".format(commit["rules_cc"]),
+    strip_prefix = "rules_cc-d545fa4f798f2a0b82f556b8b0ec59a93c100df7",
     urls = [
-        "https://github.com/bazelbuild/rules_cc/archive/{}.zip".format(commit["rules_cc"]),
+        "https://github.com/bazelbuild/rules_cc/archive/d545fa4f798f2a0b82f556b8b0ec59a93c100df7.zip",
     ],
 )
 
 load("@rules_cc//cc:repositories.bzl", "rules_cc_toolchains")
-
 
 rules_cc_toolchains()
 
