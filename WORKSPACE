@@ -49,6 +49,21 @@ http_archive(
 load("@rules_rust//rust:repositories.bzl", "rules_rust_dependencies", "rust_register_toolchains")
 
 
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
+git_repository(
+    name = "fmt",
+    remote = "https://github.com/fmtlib/fmt",
+    commit = "7e4ad40171aa552d38cb99a5c181a0d7b150facc",
+    shallow_since = "1650811382 -0700",
+    patch_cmds = [
+        "mv support/bazel/.bazelrc .bazelrc",
+        "mv support/bazel/.bazelversion .bazelversion",
+        "mv support/bazel/BUILD.bazel BUILD.bazel",
+        "mv support/bazel/WORKSPACE.bazel WORKSPACE.bazel",
+    ],
+)
+
 rules_rust_dependencies()
 
 rust_register_toolchains()

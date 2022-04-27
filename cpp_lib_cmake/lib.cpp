@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-void hello_world()
+void hello_world_from_cmake()
 {
     std::cout << "Hello world!" << std::endl;
 }

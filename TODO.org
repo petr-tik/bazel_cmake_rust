@@ -41,6 +41,20 @@ even better - you can set an env var for a particular test
 gtest EXPECT_ANY_THROW doesn't catch it properly, so we need a different kind of test
 
 ** DONE Restrict targets' publicity to more private by default
+** IDEA Add a dependency on an external lib for formatting
+https://github.com/fmtlib/fmt
+
+pretty-print a string in the current cmake lib
+#+begin_src cpp
+#include <fmt/color.h>
+
+fmt::print(fg(fmt::color::crimson) | fmt::emphasis::bold, "Hello, {}!\n", "world");
+#+end_src
+*** DONE First make cc_library depend on it
+*** HOLD then make my in-repo cmake library depend on it
+cannot get it to work, so will shelve
+** TODO extend rust library
+*** TODO modify a string in rust then pass it to cc_library to fmt pretty print
 ** TODO define proper toolchains instead of env vars
 https://bazel.build/tutorials/cc-toolchain-config
 
@@ -52,21 +66,48 @@ works as env vars too
 
 *** TODO use mold linker in the toolchain and compare link times
 
-** TODO Add a dependency on an external cmake-buildable lib for formatting
-https://github.com/fmtlib/fmt
+*** TODO use n2 instead of ninja
+native_tools_toolchains 	pass the toolchains for toolchain types '@rules_foreign_cc//toolchains:cmake_toolchain' and '@rules_foreign_cc//toolchains:ninja_toolchain' with the needed platform constraints. If you do not pass anything, registered default toolchains will be selected (see below).
 
-pretty-print a string in the current cmake lib
-#+begin_src cpp
-#include <fmt/color.h>
+point ninja_toolchain at n2
 
-fmt::print(fg(fmt::color::crimson) | fmt::emphasis::bold, "Hello, {}!\n", "world");
-#+end_src
+**** TODO pass additional arguments to record a trace
 
-** TODO modify a string in rust then pass it to cc_library to fmt pretty print
-
-** TODO add cxx-rs and link it with a third-party cmake lib
+n2 can record a trace with -d trace. use that
 
 ** TODO get clangd working for cpp
 https://github.com/hedronvision/bazel-compile-commands-extractor
 ** TODO get rust-analyzer working for rust lib
-** TODO add python tests to this
+** TODO add a dependency on an external cmake buildable lib
+** TODO add a dependency on system-installed .a library with public headers
+Found this library
+/usr/lib/llvm-10/lib/libLLVMDebugInfoDWARF.a
+
+with a bunch of headers here
+ls /usr/lib/llvm-10/include/llvm/DebugInfo/DWARF/DWARF*
+
+https://bazel.build/reference/be/c-cpp#cc_import
+#+begin_src bazel
+cc_import(
+  name = "LLVMDebugInfoDwarf",
+  # hdrs = glob(["/usr/lib/llvm-10/include/llvm/DebugInfo/DWARF/*.h"]),
+  static_library = "/usr/lib/llvm-10/lib/libLLVMDebugInfoDWARF.a",
+)
+#+end_src
+
+** TODO add cxx-rs and link it with a third-party cmake lib
+
+** TODO benchmark cpp vs rust
+*** TODO Implement the same method that calculates the sum of squares of vec<int>
+*** TODO add a google benchmark that calls cpp and rust
+*** TODO use external crate rayon to parallelise this sum of squares operation
+** TODO extend python tests
+** TODO make a cli tool
+Combine the advantages of Rust:
++ Memory safe to untrusted inputs
++ Fearless concurrency
+
+with the strengths of Cpp
++ Top quality existing libraries like OpenCV, tensorflow and others
+
+Build a command line tool
