@@ -1,3 +1,6 @@
+use std::ffi::CString;
+use std::os::raw::c_char;
+
 #[no_mangle]
 pub extern "C" fn maths_in_rust(inp: i32) -> i32 {
     let factor = 10i32;
@@ -5,8 +8,12 @@ pub extern "C" fn maths_in_rust(inp: i32) -> i32 {
 }
 
 #[no_mangle]
-pub extern "C" fn string_from_rust(number_to_add: i32) -> String {
-    format!("Hello World {number_to_add}")
+pub extern "C" fn string_from_rust(number_to_add: i32) -> *mut c_char {
+    CString::new(format!(
+        "Rust is passing this string with number: {number_to_add}\n"
+    ))
+    .expect("Failed to alloc CString")
+    .into_raw()
 }
 
 #[cfg(test)]

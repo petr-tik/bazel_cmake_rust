@@ -53,8 +53,8 @@ fmt::print(fg(fmt::color::crimson) | fmt::emphasis::bold, "Hello, {}!\n", "world
 *** DONE First make cc_library depend on it
 *** HOLD then make my in-repo cmake library depend on it
 cannot get it to work, so will shelve
-** TODO extend rust library
-*** TODO modify a string in rust then pass it to cc_library to fmt pretty print
+** DONE extend rust library
+*** DONE modify a string in rust then pass it to cc_library to fmt pretty print
 ** TODO define proper toolchains instead of env vars
 https://bazel.build/tutorials/cc-toolchain-config
 

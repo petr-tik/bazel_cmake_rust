@@ -14,5 +14,7 @@ int main(int argc, char *argv[]) {
     std::cout << "The result of add_three_in_cmake_lib(my_math()) = " << add_three_in_cmake_lib(my_math()) << std::endl;
 
     fmt::print(fg(fmt::color::crimson) | fmt::emphasis::bold, "Colourful hello {}!\n", "world");
+
+    pretty_print_a_rust_string(12);
     return my_math();
 }

@@ -5,7 +5,9 @@ cc_library(
     ],
     hdrs = ["bar.h"],
     deps = ["//rust_lib:rust_lib",
-            "//cpp_lib_cmake:cmake_lib"]
+            "//cpp_lib_cmake:cmake_lib",
+            "@fmt"
+            ]
 )
 
 cc_binary(
