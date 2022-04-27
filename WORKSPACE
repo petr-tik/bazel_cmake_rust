@@ -44,6 +44,7 @@ http_archive(
 )
 
 load("@rules_rust//rust:repositories.bzl", "rules_rust_dependencies", "rust_register_toolchains")
+load("@rules_rust//tools/rust_analyzer:deps.bzl", "rust_analyzer_deps")
 
 
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
@@ -65,3 +66,4 @@ rules_rust_dependencies()
 
 rust_register_toolchains()
 
+rust_analyzer_deps()

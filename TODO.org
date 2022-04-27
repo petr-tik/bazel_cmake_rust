@@ -65,18 +65,29 @@ gcc-7 and g++-7 as env vars
 works as env vars too
 
 *** TODO use mold linker in the toolchain and compare link times
-
 *** TODO use n2 instead of ninja
 native_tools_toolchains 	pass the toolchains for toolchain types '@rules_foreign_cc//toolchains:cmake_toolchain' and '@rules_foreign_cc//toolchains:ninja_toolchain' with the needed platform constraints. If you do not pass anything, registered default toolchains will be selected (see below).
 
 point ninja_toolchain at n2
 
+**** TODO might need to teach bazel to build n2 from source
 **** TODO pass additional arguments to record a trace
 
 n2 can record a trace with -d trace. use that
-** TODO get clangd working for cpp
+
+*** TODO create dbg and release configs
+
+** WAIT get clangd working for cpp
 https://github.com/hedronvision/bazel-compile-commands-extractor
-** TODO get rust-analyzer working for rust lib
+
+*** WAIT blocking on old python
+https://github.com/hedronvision/bazel-compile-commands-extractor/issues/46
+** DONE get rust-analyzer working for rust lib
+
+#+begin_src bash
+bazel run @rules_rust//tools/rust_analyzer:gen_rust_project
+#+end_src
+
 ** TODO add a dependency on an external cmake buildable lib
 ** TODO add a dependency on system-installed .a library with public headers
 Found this library

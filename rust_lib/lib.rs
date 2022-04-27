@@ -24,4 +24,9 @@ mod tests {
     fn test_my_maths_in_rust() {
         assert_eq!(50, maths_in_rust(5));
     }
+
+    #[test]
+    fn test_more_maths() {
+        assert_eq!(250, maths_in_rust(25));
+    }
 }
