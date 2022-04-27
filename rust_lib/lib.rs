@@ -1,8 +1,6 @@
 #[no_mangle]
 pub extern "C" fn maths_in_rust(inp: i32) -> i32 {
     let factor = 10i32;
-    // TODO aargh unsafe
-    // add a test case that triggers it in cpp
     return inp.checked_mul(factor).unwrap();
 }
 
