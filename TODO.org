@@ -74,7 +74,6 @@ point ninja_toolchain at n2
 **** TODO pass additional arguments to record a trace
 
 n2 can record a trace with -d trace. use that
-
 ** TODO get clangd working for cpp
 https://github.com/hedronvision/bazel-compile-commands-extractor
 ** TODO get rust-analyzer working for rust lib

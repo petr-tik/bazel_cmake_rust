@@ -21,11 +21,12 @@ cc_binary(
 
 
 cc_test(
-  name = "test_bar",
-  size = "small",
-  srcs = ["test_bar.cc"],
-  deps = ["@com_google_googletest//:gtest_main",
-          ":pure_bazel_cpp_lib"],
+    name = "test_bar",
+    size = "small",
+    srcs = ["test_bar.cc"],
+    deps = ["//rust_lib:rust_lib",
+            "@com_google_googletest//:gtest_main",
+            ":pure_bazel_cpp_lib"],
 )
 
 cc_binary(

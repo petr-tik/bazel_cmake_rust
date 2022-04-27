@@ -4,6 +4,7 @@ rust_static_library(
     name = "rust_lib",
     srcs = ["lib.rs"],
     visibility = ["//cc_lib:__pkg__"],
+    edition = "2018",
 )
 
 rust_test(

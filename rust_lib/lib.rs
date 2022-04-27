@@ -24,9 +24,4 @@ mod tests {
     fn test_my_maths_in_rust() {
         assert_eq!(50, maths_in_rust(5));
     }
-
-    #[test]
-    fn test_my_string() {
-        assert_eq!(string_from_rust(1), "Hello World 1");
-    }
 }
