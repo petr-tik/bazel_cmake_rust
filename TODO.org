@@ -87,6 +87,9 @@ https://github.com/hedronvision/bazel-compile-commands-extractor/issues/46
 #+begin_src bash
 bazel run @rules_rust//tools/rust_analyzer:gen_rust_project
 #+end_src
+** STRT Write timestamped file analyzing .ninja_log
+Works, but cannot find where the log file goes. Possibly lost forever
+*** TODO Recover the file written POST_BUILD?
 
 ** TODO add a dependency on an external cmake buildable lib
 ** TODO add a dependency on system-installed .a library with public headers
