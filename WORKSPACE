@@ -23,6 +23,46 @@ http_archive(
   strip_prefix = "googletest-609281088cfefc76f9d0ce82e1ff6c30cc3591e5",
 )
 
+
+BAZEL_TOOLCHAIN_TAG = "0.7.1"
+BAZEL_TOOLCHAIN_SHA = "97853d0b2a725f9eb3f5c2cc922e86a69afb35a01b52a69b4f864eaf9f3c4f40"
+
+http_archive(
+    name = "com_grail_bazel_toolchain",
+    sha256 = BAZEL_TOOLCHAIN_SHA,
+    strip_prefix = "bazel-toolchain-{tag}".format(tag = BAZEL_TOOLCHAIN_TAG),
+    canonical_id = BAZEL_TOOLCHAIN_TAG,
+    url = "https://github.com/grailbio/bazel-toolchain/archive/{tag}.tar.gz".format(tag = BAZEL_TOOLCHAIN_TAG),
+)
+
+load("@com_grail_bazel_toolchain//toolchain:deps.bzl", "bazel_toolchain_dependencies")
+
+bazel_toolchain_dependencies()
+
+load("@com_grail_bazel_toolchain//toolchain:rules.bzl", "llvm_toolchain")
+
+llvm_toolchain(
+    name = "llvm_toolchain",
+    link_flags = {"": [
+        "-lm",
+        "-no-canonical-prefixes",
+        "-fuse-ld=/home/petr_tik/.local/bin/mold",
+        "-Wl,--build-id=md5",
+        "-Wl,--hash-style=gnu",
+        "-Wl,-z,relro,-z,now",
+        "-L{toolchain_path_prefix}lib",
+        "-l:libc++.a",
+        "-l:libc++abi.a",
+        "-l:libunwind.a",
+        "-rtlib=compiler-rt",
+    ]},
+    llvm_version = "14.0.0",
+)
+
+load("@llvm_toolchain//:toolchains.bzl", "llvm_register_toolchains")
+
+llvm_register_toolchains()
+
 http_archive(
     name = "rules_foreign_cc",
     sha256 = "6041f1374ff32ba711564374ad8e007aef77f71561a7ce784123b9b4b88614fc",

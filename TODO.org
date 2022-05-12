@@ -58,13 +58,20 @@ cannot get it to work, so will shelve
 ** TODO define proper toolchains instead of env vars
 https://bazel.build/tutorials/cc-toolchain-config
 
+*** STRT use mold linker
+Use the llvm_toolchain that enables overriding the fuse-ld argument that results in mold being used
+https://github.com/grailbio/bazel-toolchain/pull/137#issue-1162297318
+**** TODO confirm all test executables are linked with mold
+***** TODO Write a bazel query that returns paths to all cc_* and rust_* test executables
+Pipe those file paths to -exec =readelf -p .comment {} ;\=
+
+**** TODO compare link times across 2 toolchains
 *** TODO define a gcc-7 toolchain
 gcc-7 and g++-7 as env vars
 
 *** TODO define a clang-11 toolchain
 works as env vars too
 
-*** TODO use mold linker in the toolchain and compare link times
 *** TODO use n2 instead of ninja
 native_tools_toolchains 	pass the toolchains for toolchain types '@rules_foreign_cc//toolchains:cmake_toolchain' and '@rules_foreign_cc//toolchains:ninja_toolchain' with the needed platform constraints. If you do not pass anything, registered default toolchains will be selected (see below).
 
@@ -109,7 +116,6 @@ cc_import(
 #+end_src
 
 ** TODO add cxx-rs and link it with a third-party cmake lib
-
 ** TODO benchmark cpp vs rust
 *** TODO Implement the same method that calculates the sum of squares of vec<int>
 *** TODO add a google benchmark that calls cpp and rust
