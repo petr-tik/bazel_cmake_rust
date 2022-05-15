@@ -61,10 +61,15 @@ https://bazel.build/tutorials/cc-toolchain-config
 *** STRT use mold linker
 Use the llvm_toolchain that enables overriding the fuse-ld argument that results in mold being used
 https://github.com/grailbio/bazel-toolchain/pull/137#issue-1162297318
-**** TODO confirm all test executables are linked with mold
-***** TODO Write a bazel query that returns paths to all cc_* and rust_* test executables
+**** IDEA confirm all test executables are linked with mold
+***** HOLD Write a bazel query that returns paths to all cc_* and rust_* test executables
 Pipe those file paths to -exec =readelf -p .comment {} ;\=
 
+cannot create a bazel query to get paths to all built executables
+***** DONE write find one-liner
+#+begin_src bash
+find bazel-bin/ -type f -executable -iname '*test*' -not -name '*params' -not -name '*.pic.*' -not -name '*runfiles_manifest' -exec readelf -p .comment {} \;
+#+end_src
 **** TODO compare link times across 2 toolchains
 *** TODO define a gcc-7 toolchain
 gcc-7 and g++-7 as env vars
